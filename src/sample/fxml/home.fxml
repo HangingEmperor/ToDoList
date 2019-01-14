@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
-<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="sample.ControllerHome">
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ControllerHome">
     <children>
         <Pane fx:id="paneBackground" layoutY="25.0" prefHeight="475.0" prefWidth="500.0">
             <children>
-                <TableView fx:id="tableviewTask" editable="true" layoutX="14.0" layoutY="75.0" prefHeight="388.0"
-                           prefWidth="472.0">
+                <TableView fx:id="tableviewTask" editable="true" layoutX="14.0" layoutY="75.0" prefHeight="388.0" prefWidth="472.0">
                     <columns>
-                        <TableColumn fx:id="tablecolumnTask" prefWidth="471.0" text="Tasks"/>
+                  <TableColumn fx:id="tablecolumnAccomplished" prefWidth="38.0" />
+                        <TableColumn fx:id="tablecolumnTask" prefWidth="433.0" text="Tasks" />
                     </columns>
                 </TableView>
-                <TextField fx:id="textfieldTask" layoutX="14.0" layoutY="34.0" onKeyPressed="#addTask" prefHeight="25.0"
-                           prefWidth="387.0" promptText="Add something to do..."/>
-                <RadioButton fx:id="radiobuttonTheme" layoutX="25.0" layoutY="8.0" mnemonicParsing="false"
-                             onAction="#changeTheme" text="Dark Theme"/>
-                <Button layoutX="417.0" layoutY="34.0" mnemonicParsing="false" onKeyPressed="#addTask" text="Add task"/>
+                <TextField fx:id="textfieldTask" layoutX="14.0" layoutY="34.0" onKeyPressed="#addTask" prefHeight="25.0" prefWidth="387.0" promptText="Add something to do..." />
+                <RadioButton fx:id="radiobuttonTheme" layoutX="25.0" layoutY="8.0" mnemonicParsing="false" onAction="#changeTheme" text="Dark Theme" />
+                <Button layoutX="417.0" layoutY="34.0" mnemonicParsing="false" onKeyPressed="#addTask" text="Add task" />
             </children>
         </Pane>
         <Pane fx:id="paneBar" prefHeight="25.0" prefWidth="500.0" style="-fx-background-color: black;;">
             <children>
-                <ImageView fx:id="imageviewClose" fitHeight="25.0" fitWidth="25.0" layoutX="477.0"
-                           onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true"/>
-                <ImageView fx:id="imageviewExpand" fitHeight="25.0" fitWidth="25.0" layoutX="452.0"
-                           onMouseClicked="#maximizeWindow" pickOnBounds="true" preserveRatio="true"/>
-                <ImageView fx:id="imageviewMinimize" fitHeight="25.0" fitWidth="25.0" layoutX="427.0"
-                           onMouseClicked="#minimizeWindow" pickOnBounds="true" preserveRatio="true"/>
-                <Label fx:id="labelTitle" layoutX="43.0" layoutY="5.0" text="labelTitle" textFill="WHITE"/>
+                <ImageView fx:id="imageviewClose" fitHeight="25.0" fitWidth="25.0" layoutX="477.0" onMouseClicked="#closeWindow" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageviewExpand" fitHeight="25.0" fitWidth="25.0" layoutX="452.0" onMouseClicked="#maximizeWindow" pickOnBounds="true" preserveRatio="true" />
+                <ImageView fx:id="imageviewMinimize" fitHeight="25.0" fitWidth="25.0" layoutX="427.0" onMouseClicked="#minimizeWindow" pickOnBounds="true" preserveRatio="true" />
+                <Label fx:id="labelTitle" layoutX="43.0" layoutY="5.0" text="labelTitle" textFill="WHITE" />
             </children>
         </Pane>
     </children>
