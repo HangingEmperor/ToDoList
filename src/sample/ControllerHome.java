@@ -4,18 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 public class ControllerHome implements Initializable {
+
 
     @FXML
     private Pane paneBackground;
@@ -39,25 +43,49 @@ public class ControllerHome implements Initializable {
     private TextField textfieldTask;
     @FXML
     private RadioButton radiobuttonTheme;
+    @FXML
+    private TableView<Task> tableviewTaskAccomplished;
+    @FXML
+    private TableColumn<Task, String> tablecolumnContentTask;
+
+    int id = 0;
 
     @FXML
     void addTask(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER)) {
-            Task task = new Task(new CheckBox(""), textfieldTask.getText(), "");
+            Task task = new Task(new CheckBox(""), id, textfieldTask.getText(), "");
             Data.addTask(task);
             refreshTable();
         }
     }
 
     public void addTaskButton(javafx.event.ActionEvent event) {
-        Task task = new Task(new CheckBox(""), textfieldTask.getText(), "");
+        Task task = new Task(new CheckBox(""), id, textfieldTask.getText(), "");
         Data.addTask(task);
         refreshTable();
     }
 
     private void refreshTable() {
-        List<Task> listPersona = Data.getListTask();
-        tableviewTask.setItems(FXCollections.observableArrayList(listPersona));
+        List<Task> listTask = Data.getListTask();
+        List<Task> listAccomplishedTask = Data.getListAccomplishedTask();
+
+        listTask.get(id).getAccomplished().setId(Integer.toString(id));
+        listTask.get(id).getAccomplished().setOnAction(event -> {
+            int id = Integer.parseInt(((CheckBox) event.getSource()).getId());
+
+            System.out.println(((CheckBox) event.getSource()).getId());
+
+            Data.listAccomplishedTask.add(Data.getListTask().get(id));
+            Data.listTask.remove(id);
+            this.id--;
+
+            tableviewTask.setItems(FXCollections.observableArrayList(Data.getListTask()));
+            tableviewTaskAccomplished.setItems(FXCollections.observableArrayList(Data.getListAccomplishedTask()));
+        });
+        id++;
+
+        tableviewTask.setItems(FXCollections.observableArrayList(listTask));
+        tableviewTaskAccomplished.setItems(FXCollections.observableArrayList(listAccomplishedTask));
     }
 
     @FXML
@@ -88,9 +116,12 @@ public class ControllerHome implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         tablecolumnAccomplished.setCellValueFactory(new PropertyValueFactory<>("accomplished"));
         tablecolumnTask.setCellValueFactory(new PropertyValueFactory<>("text"));
+        tablecolumnContentTask.setCellValueFactory(new PropertyValueFactory<>("text"));
 
-        List<Task> listPersona = Data.getListTask();
+        List<Task> listTask = Data.getListTask();
+        List<Task> listAccomplishedTask = Data.getListAccomplishedTask();
 
-        tableviewTask.setItems(FXCollections.observableArrayList(listPersona));
+        tableviewTask.setItems(FXCollections.observableArrayList(listTask));
+        tableviewTaskAccomplished.setItems(FXCollections.observableArrayList(listAccomplishedTask));
     }
 }

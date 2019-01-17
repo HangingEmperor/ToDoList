@@ -7,11 +7,19 @@ import java.util.Objects;
 public class Task {
 
     private CheckBox accomplished;
+    private int id;
     private String text;
     private String date;
 
     public Task(CheckBox accomplished, String text, String date) {
         this.accomplished = accomplished;
+        this.text = text;
+        this.date = date;
+    }
+
+    public Task(CheckBox accomplished, int id, String text, String date) {
+        this.accomplished = accomplished;
+        this.id = id;
         this.text = text;
         this.date = date;
     }
@@ -38,6 +46,15 @@ public class Task {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
