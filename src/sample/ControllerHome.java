@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 public class ControllerHome implements Initializable {
 
-
     @FXML
     private Pane paneBackground;
     @FXML
@@ -86,13 +85,18 @@ public class ControllerHome implements Initializable {
 
         tableviewTask.setItems(FXCollections.observableArrayList(listTask));
         tableviewTaskAccomplished.setItems(FXCollections.observableArrayList(listAccomplishedTask));
+        Data.saveData();
     }
 
     @FXML
     void changeTheme() {
         if (radiobuttonTheme.isSelected()) {
+            paneBar.setStyle("-fx-background-color: black;");
+            labelTitle.setStyle("-fx-text-fill: white;");
             paneBackground.setStyle("-fx-background-color: black;");
         } else {
+            paneBar.setStyle("-fx-background-color: white;");
+            labelTitle.setStyle("-fx-text-fill: black;");
             paneBackground.setStyle("-fx-background-color: white;");
         }
     }
@@ -114,6 +118,7 @@ public class ControllerHome implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        labelTitle.setText("To Do List");
         tablecolumnAccomplished.setCellValueFactory(new PropertyValueFactory<>("accomplished"));
         tablecolumnTask.setCellValueFactory(new PropertyValueFactory<>("text"));
         tablecolumnContentTask.setCellValueFactory(new PropertyValueFactory<>("text"));

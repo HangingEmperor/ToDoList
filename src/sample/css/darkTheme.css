@@ -1,1 +1,4 @@
 /* Dark theme */
+.pane {
+    -fx-background-color: black;
+}
