@@ -85,7 +85,6 @@ public class ControllerHome implements Initializable {
 
         tableviewTask.setItems(FXCollections.observableArrayList(listTask));
         tableviewTaskAccomplished.setItems(FXCollections.observableArrayList(listAccomplishedTask));
-        Data.saveData();
     }
 
     @FXML
@@ -103,6 +102,7 @@ public class ControllerHome implements Initializable {
 
     @FXML
     void closeWindow() {
+        Data.saveData();
         System.exit(0);
     }
 

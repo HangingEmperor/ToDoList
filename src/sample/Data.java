@@ -1,8 +1,6 @@
 package sample;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,30 +32,30 @@ public class Data {
     }
 
     public static void saveData() {
-        String nameFile = "log.txt";
-        File file = new File("log.txt");
-        if (!file.exists()) {
+        File fileTask = new File("tasks.txt");
+        File fileAccomplishedTask = new File("accomplishedTasks.txt");
+
+        if (!fileTask.exists() || !fileAccomplishedTask.exists()) {
             try {
-                file.createNewFile();
+                fileTask.createNewFile();
+                fileAccomplishedTask.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
         try {
-            /*
             String aux = "";
             String oldData = "";
-            FileReader hoja = new FileReader(file);
+            FileReader hoja = new FileReader(fileTask);
             BufferedReader lee = new BufferedReader(hoja);
             while ((aux = lee.readLine()) != null) {
                 oldData += aux + "\n";
             }
             lee.close();
-            */
 
-            FileWriter archivo = new FileWriter(file);
-            //archivo.append(oldData);
+            FileWriter archivo = new FileWriter(fileTask);
+            archivo.append(oldData);
             for (int i = 0; i < listTask.size(); i++) {
                 archivo.append("\n");
                 archivo.append(listTask.get(i).getText());
