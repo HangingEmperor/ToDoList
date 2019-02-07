@@ -106,15 +106,6 @@ public class ControllerHome implements Initializable {
         System.exit(0);
     }
 
-    @FXML
-    void maximizeWindow() {
-
-    }
-
-    @FXML
-    void minimizeWindow() {
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
